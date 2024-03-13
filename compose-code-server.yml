@@ -1,0 +1,18 @@
+---
+services:
+  code-server:
+    image: lscr.io/linuxserver/code-server:latest
+    container_name: code-server
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=America/Panama
+      - HASHED_PASSWORD=$$argon2i$$v=19$$m=4096,t=3,p=1$$u9DWgiUg/QVwMe8hTaJq8g$$0InafCZliYuojrtQzvVrV2wtDItBS2M3c9M1ThMxgs4
+      - SUDO_PASSWORD_HASH=$$argon2i$$v=19$$m=4096,t=3,p=1$$u9DWgiUg/QVwMe8hTaJq8g$$0InafCZliYuojrtQzvVrV2wtDItBS2M3c9M1ThMxgs4
+      - PROXY_DOMAIN=vcode.fernandogonzalez.dev #optional
+      - DEFAULT_WORKSPACE=/config/workspace #optional
+    volumes:
+      - /home/nilord/data/vcode:/config
+    ports:
+      - 8443:8443
+    restart: unless-stopped
